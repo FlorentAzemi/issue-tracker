@@ -148,14 +148,18 @@
             outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,.15);
         }
 
-        .pagination { display: flex; gap: 4px; margin-top: 16px; }
+        .pagination nav { display: flex; justify-content: flex-start; }
+        .pagination ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
         .pagination .page-item .page-link {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
+            min-width: 32px; height: 32px; padding: 0 10px;
+            border: 1px solid var(--border); border-radius: 6px;
             font-size: .8125rem; color: var(--text); background: var(--surface);
+            transition: background .15s, border-color .15s;
         }
+        .pagination .page-item .page-link:hover { background: #f1f5f9; text-decoration: none; }
         .pagination .page-item.active .page-link { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .pagination .page-item.disabled .page-link { opacity: .5; pointer-events: none; }
+        .pagination .page-item.disabled .page-link { opacity: .45; pointer-events: none; color: var(--text-muted); }
 
         .modal-backdrop {
             display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4);
