@@ -38,9 +38,17 @@
                 <span id="comment-count" class="text-muted text-sm"></span>
             </div>
             <div class="card-body">
+                {{-- Comment list --}}
+                <p id="no-comments" class="text-muted text-sm" style="display:none">No comments yet.</p>
+                <div id="comment-list"></div>
+                <div id="load-more-wrap" style="display:none;margin-top:12px;text-align:center">
+                    <button id="load-more-btn" class="btn btn-secondary btn-sm">Load more</button>
+                </div>
+
                 {{-- Add comment form --}}
-                <form id="comment-form" style="margin-bottom:24px">
+                <form id="comment-form" style="margin-top:24px;padding-top:24px;border-top:1px solid var(--border)">
                     @csrf
+                    <p class="font-semibold text-sm" style="margin-bottom:12px">Add a comment</p>
                     <div class="form-group">
                         <label class="form-label">Your name <span style="color:var(--danger)">*</span></label>
                         <input type="text" id="author_name" name="author_name" class="form-control" style="max-width:280px">
@@ -57,14 +65,6 @@
                     </button>
                     <p class="form-error mt-2" id="err-general"></p>
                 </form>
-
-                {{-- Comment list --}}
-                <div id="comment-list"></div>
-
-                <div id="load-more-wrap" style="display:none;margin-top:12px;text-align:center">
-                    <button id="load-more-btn" class="btn btn-secondary btn-sm">Load more</button>
-                </div>
-                <p id="no-comments" class="text-muted text-sm" style="display:none">No comments yet.</p>
             </div>
         </div>
     </div>
@@ -378,11 +378,11 @@ document.getElementById('comment-form').addEventListener('submit', async functio
             return;
         }
 
-        // Prepend new comment
+        // Append new comment
         const list = document.getElementById('comment-list');
         const noMsg = document.getElementById('no-comments');
         noMsg.style.display = 'none';
-        list.prepend(buildComment(data));
+        list.appendChild(buildComment(data));
 
         // Update count
         const countEl = document.getElementById('comment-count');
